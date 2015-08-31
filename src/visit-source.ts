@@ -16,7 +16,7 @@ class VisitSource {
     }
 
     public checkAndStore(): void {
-        if (!this.getCookieValue(this.cookieName, this.getCookie())) {
+        if (this.getCookieValue(this.cookieName, this.getCookie()) === undefined) {
             this.store();
         }
     }

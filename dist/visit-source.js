@@ -1,4 +1,10 @@
 var VisitSource = (function () {
+    /**
+     *
+     * @param cookieName - cookie where session referrer is stored
+     * @param cookieDomain - cookie domain parameter - for saving cookies
+     * @param isSession - flag, based on value cookie is stored only for current session or lifetime
+     */
     function VisitSource(cookieName, cookieDomain, isSession) {
         if (isSession === void 0) { isSession = true; }
         this.cookieName = cookieName;
@@ -6,7 +12,7 @@ var VisitSource = (function () {
         this.isSession = isSession;
     }
     VisitSource.prototype.checkAndStore = function () {
-        if (!this.getCookieValue(this.cookieName, this.getCookie())) {
+        if (this.getCookieValue(this.cookieName, this.getCookie()) === undefined) {
             this.store();
         }
     };
