@@ -16,7 +16,7 @@ class VisitSource {
     }
 
     public checkAndStore(): void {
-        if (this.getCookieValue(this.cookieName, this.getCookie()) === undefined) {
+        if (this.getCookieValue(this.cookieName, this.getCookie()) === null) {
             this.store();
         }
     }
@@ -40,6 +40,7 @@ class VisitSource {
         if (parts.length === 2) {
             return parts.pop().split(";").shift();
         }
+        return null;
     }
 
     private getReferrer(): string {

@@ -13,7 +13,7 @@ define(["require", "exports"], function (require, exports) {
             this.isSession = isSession;
         }
         VisitSource.prototype.checkAndStore = function () {
-            if (this.getCookieValue(this.cookieName, this.getCookie()) === undefined) {
+            if (this.getCookieValue(this.cookieName, this.getCookie()) === null) {
                 this.store();
             }
         };
@@ -32,6 +32,7 @@ define(["require", "exports"], function (require, exports) {
             if (parts.length === 2) {
                 return parts.pop().split(";").shift();
             }
+            return null;
         };
         VisitSource.prototype.getReferrer = function () {
             return document.referrer;

@@ -129,7 +129,7 @@ QUnit.test('Test checkAndStore()', function(assert) {
 		{
 			cookieName: 'wikiaReferrer',
 			cookieDomain: 'wikia.com',
-			getCookieValueResult: undefined,
+			getCookieValueResult: null,
 			storeExpectedToBeCalled: true
 		},
 		{
