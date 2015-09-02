@@ -1,4 +1,7 @@
 class VisitSource {
+    // safe max cookie expire date (32bit)
+    cookieExpireDate: Date = new Date(0x7fffffff * 1e3);
+
     cookieDomain: string;
     cookieName: string;
     isSession: boolean;
@@ -25,7 +28,7 @@ class VisitSource {
         var referrer: string = this.getReferrer(),
         cookieString: string;
         cookieString = this.cookieName + '=' + encodeURIComponent(referrer);
-        cookieString += !this.isSession ? '; expires=' + (new Date(0x7fffffff * 1e3)).toUTCString() : '';
+        cookieString += !this.isSession ? '; expires=' + this.cookieExpireDate.toUTCString() : '';
         cookieString += '; path=/; domain=' + this.cookieDomain;
 
         this.setCookie(cookieString);
@@ -38,7 +41,7 @@ class VisitSource {
     private getCookieValue(name, cookieString): string {
         var parts = ('; ' + cookieString).split('; ' + name + '=');
         if (parts.length === 2) {
-            return parts.pop().split(";").shift();
+            return parts.pop().split(';').shift();
         }
         return null;
     }

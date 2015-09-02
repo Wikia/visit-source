@@ -8,6 +8,8 @@ define(["require", "exports"], function (require, exports) {
          */
         function VisitSource(cookieName, cookieDomain, isSession) {
             if (isSession === void 0) { isSession = true; }
+            // safe max cookie expire date (32bit)
+            this.cookieExpireDate = new Date(0x7fffffff * 1e3);
             this.cookieName = cookieName;
             this.cookieDomain = cookieDomain;
             this.isSession = isSession;
@@ -20,7 +22,7 @@ define(["require", "exports"], function (require, exports) {
         VisitSource.prototype.store = function () {
             var referrer = this.getReferrer(), cookieString;
             cookieString = this.cookieName + '=' + encodeURIComponent(referrer);
-            cookieString += !this.isSession ? '; expires=' + (new Date(0x7fffffff * 1e3)).toUTCString() : '';
+            cookieString += !this.isSession ? '; expires=' + this.cookieExpireDate.toUTCString() : '';
             cookieString += '; path=/; domain=' + this.cookieDomain;
             this.setCookie(cookieString);
         };
@@ -30,7 +32,7 @@ define(["require", "exports"], function (require, exports) {
         VisitSource.prototype.getCookieValue = function (name, cookieString) {
             var parts = ('; ' + cookieString).split('; ' + name + '=');
             if (parts.length === 2) {
-                return parts.pop().split(";").shift();
+                return parts.pop().split(';').shift();
             }
             return null;
         };
