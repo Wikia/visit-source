@@ -31,4 +31,9 @@ gulp.task('compileCommonJS', function () {
 		.pipe(gulp.dest(destination));
 });
 
-gulp.task('default', ['compile', 'compileAMD', 'compileCommonJS']);
+gulp.task('copy.d.ts',function(){
+	return gulp.src('./visit-source.d.ts')
+		.pipe(gulp.dest('./dist'));
+});
+
+gulp.task('default', ['compile', 'compileAMD', 'compileCommonJS', 'copy.d.ts']);
