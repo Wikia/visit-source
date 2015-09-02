@@ -1,6 +1,6 @@
 {
   "name": "visit-source",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Storing and getting current session / lifetime visit source (using Referrer Header)",
   "repository": {
     "type": "git",
