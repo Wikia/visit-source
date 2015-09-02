@@ -1,7 +1,7 @@
 visit-source
 ===========
 
-JS library that gets stores session referrer in a cookie
+JS library that gets and stores session referrer in a cookie
 
 ## Usage
 
